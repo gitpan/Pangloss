@@ -156,8 +156,8 @@ pipeline:
           - Pager::SetCurrentPage
       - TemplateMapper
       - TemplateVars
-      - Template::Loader
+      - TemplateLoader
 #  - ContentLoader: { directory: "./web" }
 cleanup:
   # this is not yet functional...
-  - OpenFrame::Segment::Apache::Response
+  #- OpenFrame::Segment::Apache::Response

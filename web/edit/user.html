@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
-	
+
 	<head>
 		<title>Pangloss : Editor : User Detail</title>
 		<link rel="stylesheet" href="/pcie.css"/>
@@ -25,7 +25,7 @@
 
  						<?var name="set: can_edit session/user/is_admin"?>
 
-						<form method="post">
+						<form method="post" action="user.html">
 							<input type="hidden" name="selected_user" value="$view/user/key"/>
 							<input type="hidden" name="list_languages" value="1"/>
 							<span petal:if="view/user/modified" style="color: green">User modified.</span>
@@ -62,21 +62,21 @@
 								<tr>
 									<td>Add Concepts:</td>
 									<td>
-										<input petal:if="can_edit" type="checkbox" name="new_user_add_concepts" petal:attributes="checked true: $view/user/privileges/add_concepts;">
+										<input petal:if="can_edit" type="checkbox" name="new_user_add_concepts" petal:attributes="checked true: $view/user/privileges/add_concepts;"/>
 										<span petal:if="false: can_edit"><?if name="view/user/privileges/add_concepts"?>yes<?else?>no<?end?></span>
 									</td>
 								</tr>
 								<tr>
 									<td>Add Categories:</td>
 									<td>
-										<input petal:if="can_edit" type="checkbox" name="new_user_add_categories" petal:attributes="checked true: $view/user/privileges/add_categories;">
+										<input petal:if="can_edit" type="checkbox" name="new_user_add_categories" petal:attributes="checked true: $view/user/privileges/add_categories;"/>
 										<span petal:if="false: can_edit"><?if name="view/user/privileges/add_categories"?>yes<?else?>no<?end?></span>
 									</td>
 								</tr>
 								<tr>
 									<td style="background-color: #d99">Admin:</td>
 									<td style="background-color: #d99">
-										<input petal:if="can_edit" type="checkbox" name="new_user_admin" petal:attributes="checked true: $view/user/privileges/admin">
+										<input petal:if="can_edit" type="checkbox" name="new_user_admin" petal:attributes="checked true: $view/user/privileges/admin"/>
 										<span petal:if="false: can_edit"><?if name="view/user/privileges/admin"?>yes<?else?>no<?end?></span>
 									</td>
 								</tr>
@@ -138,8 +138,6 @@
 								<tr><td align="center"><input type="submit" name="modify_user" value="modify user"/></td></tr>
 							</table>
 						</form>
-
-						<!-- pre><?var name="dump: view/user"?></pre -->
 
 					</span>
 

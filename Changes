@@ -4,6 +4,14 @@
 
 All changes by Steve Purkis <spurkis@quiup.com> unless otherwise stated.
 
+v0.05
+    +	fixed multiple-selected items bug (both uri encoded & post) on users,
+	concepts, languages and categories pages
+    +	generalizd uri match in header.html
+    +	"Content-Type: text/html; charset=UTF-8" HTTP header now set
+    +	fixed empty document filter & related bugs
+    +	de-linted html, verified xhtml
+
 v0.04
     +	more pod updates
     +	moved Pangloss/Installation.pod --> Pangloss/Install.pm because it

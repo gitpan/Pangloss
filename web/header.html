@@ -1,10 +1,10 @@
 
 <!-- START OF HEADER & TOP NAV .............................................. -->
-		<?var name="set: search_page like: request/uri /search.html"?>
-		<?var name="set: editor_page like: request/uri /edit/"?>
+		<?var name="set: search_page like: request/uri search.html"?>
+		<?var name="set: editor_page like: request/uri edit/"?>
 		<table bgcolor="#BEDCEC" border="0" cellpadding="0" cellspacing="0" width="100%">
 			<tr>
-				<td valign="top" align="center" valign="middle" height="35">
+				<td align="center" valign="middle" height="35">
 					<a class="header" href="/index.html">Pangloss</a>
 					<span class="header" petal:if="true: search_page"> : <a class="header" href="/search.html">Search</a></span>
 					<span class="header" petal:if="true: editor_page"> : <a class="header" href="/edit/index.html">Editor</a></span>

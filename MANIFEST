@@ -150,6 +150,7 @@ lib/Pangloss/Segment/SearchRequest/Update.pm
 lib/Pangloss/Segment/ShowStore.pm
 lib/Pangloss/Segment/StoreRequest.pm
 lib/Pangloss/Segment/StoreURI.pm
+lib/Pangloss/Segment/TemplateLoader.pm
 lib/Pangloss/Segment/TemplateMapper.pm
 lib/Pangloss/Segment/TemplateVars.pm
 lib/Pangloss/Segment/UserLoader.pm

@@ -24,7 +24,7 @@
 					<table style="border: solid 1px">
 						<tr><th>Concept</th><th>Category</th><th>Notes</th><th>Date</th></tr>
 						<tr petal:repeat="concept view/concepts_collection/sorted_list">
-							<td><a href="/edit/concept.html?selected_concept=$concept/key&get_concept=1">$concept/name</td>
+							<td><a href="/edit/concept.html?selected_concept=$concept/key&get_concept=1">$concept/name</a></td>
 							<td>$concept/category</td>
 							<td>$concept/notes</td>
 							<td><span class="small" petal:content="date: $concept/date">date</span></td>

@@ -9,13 +9,12 @@ High Priority
 Trap Pixie Errors?
     o	eval all Pixie operations?
 
-
 -------------------------------------------------------------------------------
 Medium Priority
 -------------------------------------------------------------------------------
 
 Pangloss::Version
-    o	using PG::Version doesn't seem to be working? (see search.cpan.org)
+    o	PG::Version aren't working with the PAUSE indexer?
 
 Text Search Filter
 

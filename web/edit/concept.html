@@ -24,7 +24,7 @@
  					<?var name="set: can_edit session/user/is_admin"?>
 
 					<span petal:if="view/concept;">
-						<form method="post">
+						<form method="post" action="concept.html">
 							<input type="hidden" name="selected_concept" value="$view/concept/key"/>
 							<span petal:if="view/concept/modified" style="color: green">Concept modified.</span>
 							<span petal:if="view/concept/removed" style="color: red">Concept removed.</span>

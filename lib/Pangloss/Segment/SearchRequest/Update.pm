@@ -10,7 +10,7 @@ use base      qw( OpenFrame::WebApp::Segment::Session Pangloss::Object );
 use accessors qw( srequest args );
 
 our $VERSION  = ((require Pangloss::Version), $Pangloss::VERSION)[1];
-our $REVISION = (split(/ /, ' $Revision: 1.8 $ '))[2];
+our $REVISION = (split(/ /, ' $Revision: 1.9 $ '))[2];
 our %STATUS_CODES = Pangloss::Term::Status->status_codes;
 
 sub dispatch {
@@ -110,11 +110,10 @@ sub update_keyword {
 
 sub update_document {
     my $self = shift;
-    if ($self->args->{uri}) {
-	$self->srequest->load_document_from( $self->args->{uri} );
-    } else {
-	$self->srequest->document_uri( undef );
-    }
+
+    # $self->emit( "updating document: " . $self->args->{uri} );
+    $self->srequest->load_document_from( $self->args->{uri} );
+
     return $self;
 }
 

@@ -42,7 +42,7 @@ use base      qw( Pangloss::Object );
 use accessors qw( filters modified document_uri );
 
 our $VERSION  = ((require Pangloss::Version), $Pangloss::VERSION)[1];
-our $REVISION = (split(/ /, ' $Revision: 1.12 $ '))[2];
+our $REVISION = (split(/ /, ' $Revision: 1.13 $ '))[2];
 
 sub init {
     my $self = shift;
@@ -232,6 +232,11 @@ sub load_document_from {
     my $self = shift;
     my $uri  = shift;
 
+    unless ($uri) {
+	return $self->document( undef )
+	            ->document_uri( undef );
+    }
+
     $uri = $self->create_uri_from( $uri )
       unless (blessed $uri and $uri->isa( 'URI' ));
 
@@ -250,12 +255,15 @@ sub download_document_uri {
     $self->emit( "downloading $uri..." );
     $uri = URI->new( $uri );
 
-    my $html = LWP::Simple::get( $uri ); # assume it's HTML
+    # TODO: throw error on unable to d/l
+    # assume it's HTML
+    my $html = LWP::Simple::get( $uri );
     my $text = Pangloss::HTML::Stripper->new->strip( $html );
 
-    $self->document( $text );
+    # set to a non-empty string for get_filters()
+    $text ||= ' ';
 
-    return $self;
+    $self->document( $text );
 }
 
 sub create_uri_from {
@@ -268,7 +276,7 @@ sub create_uri_from {
 sub is_document_loaded_from {
     my $self = shift;
     my $uri  = shift;
-    return $self->document_uri eq $uri and $self->document;
+    return ( ($self->document_uri eq $uri) && ($self->document) );
 }
 
 

@@ -25,7 +25,7 @@ use base      qw( Pangloss::Object );
 use accessors qw( config app controller ufactory tfactory sfactory );
 
 our $VERSION  = ((require Pangloss::Version), $Pangloss::VERSION)[1];
-our $REVISION = (split(/ /, ' $Revision: 1.5 $ '))[2];
+our $REVISION = (split(/ /, ' $Revision: 1.6 $ '))[2];
 
 #------------------------------------------------------------------------------
 # Object initialization
@@ -128,8 +128,8 @@ sub init_debug {
     my $self = shift;
     if (my $debug = $self->config->{PG_DEBUG}) {
 	$Pangloss::DEBUG{$self->class} = $debug;
-	$Pangloss::DEBUG{ALL}  = $debug - 2 > 0 ? 1 : 0;
-	$OpenFrame::DEBUG{ALL} = $debug - 1 > 0 ? 1 : 0;
+	$Pangloss::DEBUG{ALL}  = ($debug - 2 > 0) ? 1 : 0;
+	$OpenFrame::DEBUG{ALL} = ($debug - 1 > 0) ? 1 : 0;
 	$self->emit( "($$) debug level set to: $debug\n" );
     }
     return $self;

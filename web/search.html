@@ -82,7 +82,7 @@
 																	<td width="50%" valign="top">
 																		<span class="small" petal:repeat="category view/categories">
 																			<div petal:if="repeat/odd">
-																				<input class="medium" type="checkbox" name="category_$category/key" petal:attributes="checked true: $srequest/is_category_selected category;"><span class="medium">$category/name</span></input>
+																				<input class="medium" type="checkbox" name="category_$category/key" petal:attributes="checked true: $srequest/is_category_selected category;"/><span class="medium">$category/name</span>
 																			</div>
 																		</span>
 																	</td>
@@ -90,7 +90,7 @@
 																	<td width="50%" valign="top">
 																		<span class="small" petal:repeat="category view/categories">
 																			<div petal:if="repeat/even">
-																				<input class="medium" type="checkbox" name="category_$category/key" petal:attributes="checked true: $srequest/is_category_selected category;"><span class="medium">$category/name</span></input>
+																				<input class="medium" type="checkbox" name="category_$category/key" petal:attributes="checked true: $srequest/is_category_selected category;"/><span class="medium">$category/name</span>
 																			</div>
 																		</span>
 																	</td>
@@ -105,7 +105,7 @@
 													</tr>
 												</table>
 
-												<table width="200" border="0" cellpadding="0" cellspacing="0" width="100%">
+												<table width="200" border="0" cellpadding="0" cellspacing="0">
 													<tr>
 														<td height="15"><span class="vsmall"> </span></td>
 													</tr>
@@ -127,7 +127,7 @@
 																	<td width="50%" valign="top">
 																		<span class="medium" petal:repeat="language view/languages">
 																			<div petal:if="repeat/odd">
-																				<input class="medium" type="checkbox" name="language_$language/key" petal:attributes="checked true: $srequest/is_language_selected language;">$language/name <span class="small"><span class="search-result-lang-$language/iso_code">($language/iso_code)</span></span<</input>
+																				<input class="medium" type="checkbox" name="language_$language/key" petal:attributes="checked true: $srequest/is_language_selected language;"/><span class="medium">$language/name <span class="small"><span class="search-result-lang-$language/iso_code">($language/iso_code)</span></span></span>
 																			</div>
 																		</span>
 																	</td>
@@ -135,7 +135,7 @@
 																	<td width="50%" valign="top">
 																		<span class="medium" petal:repeat="language view/languages">
 																			<div petal:if="repeat/even">
-																				<input class="medium" type="checkbox" name="language_$language/key" petal:attributes="checked true: $srequest/is_language_selected language;">$language/name <span class="small"><span class="search-result-lang-$language/iso_code">($language/iso_code)</span></span<</input>
+																				<input class="medium" type="checkbox" name="language_$language/key" petal:attributes="checked true: $srequest/is_language_selected language;"/><span class="medium">$language/name <span class="small"><span class="search-result-lang-$language/iso_code">($language/iso_code)</span></span></span>
 																			</div>
 																		</span>
 																	</td>
@@ -150,7 +150,7 @@
 													</tr>
 												</table>
 
-												<table width="200" border="0" cellpadding="0" cellspacing="0" width="100%">
+												<table width="200" border="0" cellpadding="0" cellspacing="0">
 													<tr>
 														<td height="15"><span class="vsmall"> </span></td>
 													</tr>
@@ -170,13 +170,13 @@
 																<tr>
 																	<td width="4"><span class="vsmall"> </span></td>
 																	<td width="50%" valign="top">
-																		<div><input class="medium" type="checkbox" name="status_approved" petal:attributes="checked true: $srequest/is_status_selected $view/status_codes/approved;"><span class="medium">Approved <span class="small">($approved)</span></span></input></div>
-																		<div><input class="medium" type="checkbox" name="status_pending"  petal:attributes="checked true: $srequest/is_status_selected $view/status_codes/pending;"><span class="medium">Pending <span class="small">($pending)</span></span></input></div>
+																		<div><input class="medium" type="checkbox" name="status_approved" petal:attributes="checked true: $srequest/is_status_selected $view/status_codes/approved;"/><span class="medium">Approved <span class="small">($approved)</span></span></div>
+																		<div><input class="medium" type="checkbox" name="status_pending"  petal:attributes="checked true: $srequest/is_status_selected $view/status_codes/pending;" /><span class="medium">Pending <span class="small">($pending)</span></span></div>
 																	</td>
 																	<td width="4"><span class="vsmall"> </span></td>
 																	<td width="50%" valign="top">
-																		<div><input class="medium" type="checkbox" name="status_rejected"   petal:attributes="checked true: $srequest/is_status_selected $view/status_codes/rejected;"><span class="medium">Rejected <span class="small">($rejected)</span></span></input></div>
-																		<div><input class="medium" type="checkbox" name="status_deprecated" petal:attributes="checked true: $srequest/is_status_selected $view/status_codes/deprecated;"><span class="medium">Deprecated <span class="small">($deprecated)</span></span></input></div>
+																		<div><input class="medium" type="checkbox" name="status_rejected"   petal:attributes="checked true: $srequest/is_status_selected $view/status_codes/rejected;"  /><span class="medium">Rejected <span class="small">($rejected)</span></span></div>
+																		<div><input class="medium" type="checkbox" name="status_deprecated" petal:attributes="checked true: $srequest/is_status_selected $view/status_codes/deprecated;"/><span class="medium">Deprecated <span class="small">($deprecated)</span></span></div>
 																	</td>
 																</tr>
 																<tr>
@@ -189,7 +189,7 @@
 													</tr>
 												</table>
 
-												<table width="200" border="0" cellpadding="0" cellspacing="0" width="100%">
+												<table width="200" border="0" cellpadding="0" cellspacing="0">
 													<tr>
 														<td height="15"><span class="vsmall"> </span></td>
 													</tr>
@@ -211,7 +211,7 @@
 																	<td width="50%" valign="top">
 																		<span class="small" petal:repeat="user $view/translators">
 																			<div petal:if="repeat/odd">
-																				<input class="medium" type="checkbox" name="translator_$user/key" petal:attributes="checked true: $srequest/is_translator_selected user;"><span class="medium">$user/name</span></input>
+																				<input class="medium" type="checkbox" name="translator_$user/key" petal:attributes="checked true: $srequest/is_translator_selected user;"/><span class="medium">$user/name</span>
 																			</div>
 																		</span>
 																	</td>
@@ -219,7 +219,7 @@
 																	<td width="50%" valign="top">
 																		<span class="small" petal:repeat="user view/translators">
 																			<div petal:if="repeat/even">
-																				<input class="medium" type="checkbox" name="translator_$user/key" petal:attributes="checked true: $srequest/is_translator_selected user;"><span class="medium">$user/name</span></input>
+																				<input class="medium" type="checkbox" name="translator_$user/key" petal:attributes="checked true: $srequest/is_translator_selected user;"/><span class="medium">$user/name</span>
 																			</div>
 																		</span>
 																	</td>
@@ -234,7 +234,7 @@
 													</tr>
 												</table>
 
-												<table width="200" border="0" cellpadding="0" cellspacing="0" width="100%">
+												<table width="200" border="0" cellpadding="0" cellspacing="0">
 													<tr>
 														<td height="15"><span class="vsmall"> </span></td>
 													</tr>
@@ -256,7 +256,7 @@
 																	<td width="50%" valign="top">
 																		<span class="small" petal:repeat="user view/proofreaders">
 																			<div petal:if="repeat/odd">
-																				<input class="medium" type="checkbox" name="proofreader_$user/key" petal:attributes="checked true: $srequest/is_proofreader_selected user;"><span class="medium">$user/name</span></input>
+																				<input class="medium" type="checkbox" name="proofreader_$user/key" petal:attributes="checked true: $srequest/is_proofreader_selected user;"/><span class="medium">$user/name</span>
 																			</div>
 																		</span>
 																	</td>
@@ -264,7 +264,7 @@
 																	<td width="50%" valign="top">
 																		<span class="small" petal:repeat="user view/proofreaders">
 																			<div petal:if="repeat/even">
-																				<input class="medium" type="checkbox" name="proofreader_$user/key" petal:attributes="checked true: $srequest/is_proofreader_selected user;"><span class="medium">$user/name</span></input>
+																				<input class="medium" type="checkbox" name="proofreader_$user/key" petal:attributes="checked true: $srequest/is_proofreader_selected user;"/><span class="medium">$user/name</span>
 																			</div>
 																		</span>
 																	</td>
@@ -279,7 +279,7 @@
 													</tr>
 												</table>
 
-												<table width="200" border="0" cellpadding="0" cellspacing="0" width="100%">
+												<table width="200" border="0" cellpadding="0" cellspacing="0">
 													<tr>
 														<td height="15"><span class="vsmall"> </span></td>
 													</tr>

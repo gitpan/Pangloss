@@ -44,7 +44,7 @@
  					<?var name="set: can_edit session/user/is_admin"?>
  					<?var name="set: lang view/language"?>
 
-					<form method="post" petal:if="lang">
+					<form method="post" action="language.html" petal:if="lang">
 						<input type="hidden" name="selected_language" value="$lang/key"/>
 						<span petal:if="lang/added"    style="color: green">Language Added.</span>
 						<span petal:if="lang/modified" style="color: green">Language Modified.</span>

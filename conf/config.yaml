@@ -156,5 +156,5 @@ pipeline:
           - Pager::SetCurrentPage
       - TemplateMapper
       - TemplateVars
-      - Template::Loader
+      - TemplateLoader
   - ContentLoader: { directory: "./web" }
