@@ -1,0 +1,298 @@
+<html>
+  <head>
+    <title>Pangloss Technical Specification</title>
+    <link rel="stylesheet" href="pangloss.css"/>
+  </head>
+
+  <body bgcolor="white">
+    <h1 class="title" id="top">Pangloss Technical Specification</h1>
+
+    <table width="90%">
+      <tr><td align="left">
+	  <table>
+	    <tr><td>Author:</td> <td>Steve Purkis &lt;spurkis@quiup.com&gt;</td></tr>
+	    <tr><td>Date:</td>   <td>01/04/2003</td></tr>
+	  </table>
+	</td><td align="right">
+	  <table>
+	    <tr><td>$Revision: 1.3 $, $Author: spurkis $</td></tr>
+	    <tr><td>$Date: 2003/04/11 17:13:33 $</td></tr>
+	  </table>
+      </td></tr>
+    </table>
+
+    <div class="toc">
+      <h2 id="toc">Table of Contents</h2>
+      <div class="section">
+	<a href="#1">1. Project Overview</a> <br/>
+	<a href="#2">2. System Architecture</a> <br/>
+	<a href="#3">3. Overview of Classes</a> <br/>
+	<a href="#4">4. Application Logic</a> <br/>
+	<a href="#5">5. Design Decisions</a> <br/>
+      </div>
+    </div>
+
+
+    <h1 id="1">1  Project Overview</h1>
+    <div class="section">
+
+      This document outlines the technical requirements of Pangloss, a
+      multilingual terminology management system.
+
+      <h2 id="1.1">1.1  Assumptions</h2>
+      <ul>
+	<li>All interaction will be done in UTF-8.</li>
+	<li>Users will have access to Unicode-aware browsers.</li>
+	<li>Users' browsers will be able to display multi-lingual characters correctly.</li>
+	<li><i>...I'm sure there are more...</i></li>
+      </ul>
+
+      <h2 id="1.2">1.2  Notes</h2>
+      <ul>
+	<li>Use of the word <em>term</em> is favoured over <em>keyword</em> in
+	  this document.</li>
+	<li><i>...I'm sure there are more...</i></li>
+      </ul>
+
+    </div>
+
+
+    <h1 id="2">2  System Architecture</h1>
+    <div class="section">
+
+      An overview of the system architecture of Pangloss is shown in Figure 1.
+
+      <p/>
+      <div class="caption" align="right">Fig. 1: Pangloss Architecture</div>
+      <img src="Pangloss-Architecture.png" align="right" alt="Pangloss Architecture"/>
+
+      This includes:
+      <ul>
+	<li>Perl v5.8</li>
+	<li>Apache 1.3.x / mod_perl 1.x</li>
+	<li>OpenFrame 3.x</li>
+	<li>MySQL backend</li>
+	<li>Petal templates</li>
+	<li>HTTP/mod_perl authentication</li>
+      </ul>
+
+      Though Pangloss will be developed in Apache/mod_perl 1, support for
+      Apache 2.x / mod_perl 2 is desirable.
+
+      <p/>
+      Compatibility with MKDoc users will be supported through the MKDoc
+      HTTP/mod_perl authentication module.
+
+      <p/>
+      Pangloss will be developed and tested under Linux and Mac OS X using CVS for
+      version control.  The target platform is Linux.  Support for other platforms
+      including Win32 and other flavours of Unix is desirable but not required.
+      Localization of Pangloss (ie: support for multi-lingual templates, errors,
+      and messages) is also desirable but not required.
+
+    </div>
+
+
+    <h1 id="3">3  Overview of Classes</h1>
+    <div class="section">
+
+      <table>
+	<tr>
+	  <td valign="top">
+	    <!-- make sure the image stays in this section -->
+	    <img src="Pangloss-Classes.png" align="left" alt="Pangloss Classes"/>
+	    <div class="caption" align="right">Fig. 2: Pangloss Classes</div>
+	  </td>
+	  <td valign="top">
+	    Pangloss will be developed in the style of a Model-View-Controller
+	    (MVC) application.  Figure 2 outlines parts of the model and the view,
+	    the controller is detailed in <a href="#4">section 4</a>.
+
+	    <p/>
+	    One of the main goals behind this approach is to build a system that
+	    has a high number of reusable parts, and who's functionality is easy
+	    to change.
+
+	    <p/>
+	    The <code>Application</code> class will be the main entry point to the
+	    system, handling most if not all of the controller's requests.  It will
+	    pass <code>Views</code> back up to the controller for use in templates.
+
+	    <p/>
+	    Object persistency will initially be achieved through use of
+	    <a href="http://search.cpan.org/author/JDUNCAN/Pixie/">Pixie</a> to
+	    speed up development time.  If necessary,
+	    <a href="http://search.cpan.org/author/TMTM/Class-DBI/">Class::DBI</a>
+	    may be used in the future to store data using a well-defined database
+	    schema.
+
+	    <p/>
+	    <i>... what else have I missed? ...</i>
+
+	  </td>
+	</tr>
+      </table>
+
+    </div>
+
+    <h1 id="4">4  Application Logic</h1>
+    <div class="section">
+
+      This section details the <em>controller</em> of Pangloss - it is effectively
+      a high-level overview of Pangloss' logic flow.  It's based on the idea of
+      <a href="http://search.cpan.org/author/JDUNCAN/Pipeline/">Pipeline</a>
+      Segments <i>(so hopefully there will be a 1:1 mapping)</i>, and assumes
+      it is running in OpenFrame
+      <i>(ie: there is an OpenFrame::Request in the store, etc..)</i>.  Each
+      segment will be minimalistic in that most of the work will be done by
+      the model, as outlined in <a href="#3">section 3</a>.  In saying that,
+      it is worth noting that templates will be chosen by the controller so that
+      the model does not have to concern itself with presentation logic.
+
+      <p/>
+      For each request, Pangloss will execute the following:
+
+      <ol>
+	<li>
+	  Loaders
+	  <ul>
+	    Load Session()
+	    <ul><li>
+		Decline User Exists<br/>
+		Load User( remote user )<br/>
+	    </li></ul>
+	    Load Selected Filters( ... )<br/>
+	    Load Selected User( username )<br/>
+	    Load Selected Concept( concept name)<br/>
+	    Load Selected Term( term name )<br/>
+	    Load Selected Language( language name )<br/>
+	    Load Text Document( text | blob )<br/>
+	    Load Html Document( URI )<br/>
+	  </ul>
+	</li>
+	<br/>
+
+	<li>
+	  Login
+	  <ul>
+	    Decline No User<br/>
+	    Login( username, password ) <i>probably not needed?</i><br/>
+	  </ul>
+	</li>
+	<br/>
+
+	<li>
+	  Generate Glossary
+	  <ul><li>
+	      Decline No Filters<br/>
+	      Generate Glossary( filters )<br/>
+	  </li></ul>
+	  <ul><li>
+	      Decline No Document<br/>
+	      Generate Glossary From Text( text doc )<br/>
+	      Generate Glossary From Html( html doc )<br/>
+	  </li></ul>
+	</li>
+	<br/>
+
+	<li>
+	  Administer Terms
+	  <ul>
+	    Decline No Term<br/>
+	    <ul><li>
+		Decline Not Translator<br/>
+		Decline Term Exists<br/>
+		Add Term( concept, language, new term, notes )<br/>
+	    </li></ul>
+	    <ul><li>
+		Decline Not Proofreader<br/>
+		Modify Term Status( term, new status, notes )<br/>
+	    </li></ul>
+	    <ul><li>
+		Decline Not Administrator<br/>
+		Modify Term( term, ... )<br/>
+		Delete Term( term )<br/>
+	    </li></ul>
+	  </ul>
+	</li>
+	<br/>
+
+	<li>
+	  Administer Users
+	  <ul>
+	    Decline No User Selected<br/>
+	    <ul><li>
+		Decline Not Administrator<br/>
+		Decline Term Exists<br/>
+		Add User( name, type )<br/>
+	    </li></ul>
+	    Modify User( user, ... )<br/>
+	    Delete User( user ) <i>does not *really* delete user</i><br/>
+	  </ul>
+	</li>
+	<br/>
+
+	<li>
+	  Administer Concepts
+	  <ul>
+	    Decline No Concept<br/>
+	    <ul><li>
+		Decline Not Administrator<br/>
+		Decline Concept Exists<br/>
+		Add New Concept( name, description )<br/>
+	    </li></ul>
+	    Modify Concept( concept, ... )<br/>
+	    Delete Concept( concept ) <i>deletes associated terms too</i><br/>
+	  </ul>
+	</li>
+	<br/>
+
+	<li>
+	  Administer Languages
+	  <ul>
+	    Decline No Language<br/>
+	    Add New Language( name, iso code )<br/>
+	    Modify User( language, ... )<br/>
+	    Delete Language( language ) <i>deletes associated concepts + terms too</i><br/>
+	  </ul>
+	</li>
+	<br/>
+
+	<li>Load Filter Options()</li>
+	<br/>
+
+	<li>
+	  Process Template
+	  <ul>
+	    Decline No Template<br/>
+	    Add Messages To Template()<br/>
+	    Add Errors To Template()<br/>
+	    Load Template()<br/>
+	  </ul>
+	</li>
+	<br/>
+
+      </ol>
+
+    </div>
+
+    <h1 id="5">5  Design Decisions</h1>
+    <div class="section">
+
+      The following design decisions have been made to give the prject consistency:
+
+      <ol>
+
+	<li/>All classes will be tested using
+	  <a href="http://search.cpan.org/author/MSCHWERN/Test-Simple/">Test::More</a>.
+
+	<li/>Errors in the model will be handled using Exceptions from
+	  <a href="http://search.cpan.org/author/UARUN/Error/">Error</a>.
+
+	<li/>Accessor methods will return the object so that they may be cascaded.
+
+      </ol>
+
+
+  </body>
+</html>
