@@ -1,19 +1,14 @@
+bin/pg_admin			Offline admin tool
+bin/pg_test_server		Standalone test server
 BUGS
 Build.PL			Replacement for Makefile.PL
 Changes				List of changes
-INSTALL				Installation instructions
-MANIFEST			This list of files
-META.yml			Module meta data for CPAN++
-Makefile.PL			Makefile builder
-README				Read this file first
-TODO				To-do list
-bin/pg_admin			Offline admin tool
-bin/pg_test_server		Standalone test server
 conf/config.yaml		Pipeline config file (test server)
 conf/controller.yml		Controller Pipeline config file
 conf/sample-httpd.conf
 docs/design-notes.txt
 docs/working-notes.txt
+INSTALL				Installation instructions
 lib/Pangloss.pm
 lib/Pangloss/Apache/Handler.pm
 lib/Pangloss/Application.pm
@@ -37,8 +32,8 @@ lib/Pangloss/Concepts.pm
 lib/Pangloss/Config.pm
 lib/Pangloss/Error.pm
 lib/Pangloss/HTML/Stripper.pm
-lib/Pangloss/IO/YAML.pm
 lib/Pangloss/Install.pm
+lib/Pangloss/IO/YAML.pm
 lib/Pangloss/Language.pm
 lib/Pangloss/Language/Error.pm
 lib/Pangloss/Languages.pm
@@ -87,13 +82,13 @@ lib/Pangloss/Segment/Decline/NoSelectedLanguage.pm
 lib/Pangloss/Segment/Decline/NoSelectedSearch.pm
 lib/Pangloss/Segment/Decline/NoSelectedTerm.pm
 lib/Pangloss/Segment/Decline/NoSelectedUser.pm
+lib/Pangloss/Segment/Decline/NotAdmin.pm
 lib/Pangloss/Segment/Decline/NoTerm.pm
 lib/Pangloss/Segment/Decline/NoTermStatus.pm
-lib/Pangloss/Segment/Decline/NoUser.pm
-lib/Pangloss/Segment/Decline/NoUserInSession.pm
-lib/Pangloss/Segment/Decline/NotAdmin.pm
 lib/Pangloss/Segment/Decline/NotProofreader.pm
 lib/Pangloss/Segment/Decline/NotTranslator.pm
+lib/Pangloss/Segment/Decline/NoUser.pm
+lib/Pangloss/Segment/Decline/NoUserInSession.pm
 lib/Pangloss/Segment/GetCategory.pm
 lib/Pangloss/Segment/GetConcept.pm
 lib/Pangloss/Segment/GetLanguage.pm
@@ -170,6 +165,10 @@ lib/Pangloss/Users.pm
 lib/Pangloss/Version.pm
 lib/Pangloss/WebApp.pm
 lib/Pangloss/WebApp/Standalone.pm
+Makefile.PL			Makefile builder
+MANIFEST			This list of files
+META.yml			Module meta data for CPAN++
+README				Read this file first
 t/001..object.t
 t/002..errors.t
 t/003..collection-item.t
@@ -230,6 +229,7 @@ t/lib/TestSimulator/User.pm
 t/lib/TestStore.pm
 t/lib/TestWordList.pm
 t/stress-test.pl
+TODO				To-do list
 web/category-error.html
 web/concept-error.html
 web/edit/add_category.html

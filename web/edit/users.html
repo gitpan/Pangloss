@@ -26,7 +26,7 @@
 					<table style="border: solid 1px">
 						<tr><th>User ID</th><th>Full Name</th></tr>
 						<tr petal:repeat="user view/users_collection/sorted_list">
-							<td><a href="/edit/user.html?selected_user=$user/key&get_user=1">$user/id</a></td>
+							<td><a href="/edit/user.html?selected_user=${uri_escape: user/key}&get_user=1">$user/id</a></td>
 							<td>$user/name</td>
 						</tr>
 					</table>

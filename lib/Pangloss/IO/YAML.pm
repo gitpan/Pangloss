@@ -18,7 +18,7 @@ use base      qw( Pangloss::Object );
 use accessors qw( languages categories users concepts terms );
 
 our $VERSION  = ((require Pangloss::Version), $Pangloss::VERSION)[1];
-our $REVISION = (split(/ /, ' $Revision: 1.3 $ '))[2];
+our $REVISION = (split(/ /, ' $Revision: 1.5 $ '))[2];
 
 sub init {
     my $self = shift;
@@ -61,7 +61,8 @@ sub parse_db {
     foreach my $concept (keys %$db) {
 	$self->emit( "parsing concept '$concept'..." );
 	my $c  = $self->get_or_create_concept( $concept );
-	my $ct = $self->create_term( $c->key, $concept, $src_lang->key );
+	my $ct = $self->create_term( $c->key, $concept, $src_lang->key )
+	  unless exists $db->{$concept}->{$src_lang->key};
 	foreach my $lang (keys %{ $db->{$concept} }) {
 	    my $term = $db->{$concept}->{$lang};
 	    my $l    = $self->get_or_create_lang( $lang );
@@ -133,7 +134,7 @@ sub create_term {
 	$self->terms->add( $ct );
 	return $ct;
     } catch Error with {
-	warn $ct->key . " " . shift();
+	warn 'error creating "' . $ct->key . '" - ' . shift() . "\n";
     };
 
     return;

@@ -12,6 +12,8 @@ Pangloss - a multilingual web-based glossary.
 
 package Pangloss;
 
+use 5.008;
+
 use strict;
 use warnings::register;
 
@@ -23,8 +25,8 @@ use Pangloss::Application;
 
 # hard-code version temporarily while we try & resolve a CPAN indexing problem
 #our $VERSION  = ((require Pangloss::Version), $Pangloss::VERSION)[1];
-our $VERSION  = '0.05';
-our $REVISION = (split(/ /, ' $Revision: 1.11 $ '))[2];
+our $VERSION  = '0.05_01';
+our $REVISION = (split(/ /, ' $Revision: 1.12 $ '))[2];
 
 1;
 

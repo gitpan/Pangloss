@@ -26,9 +26,9 @@ isa_ok( $webapp, 'Pangloss::WebApp', 'new' );
 is( Pangloss::Config->new->{PG_HOME},      '.',      'got expected PG_HOME' );
 is( Pangloss::Config->new->{PG_PIXIE_DSN}, 'memory', 'got expected PG_PIXIE_DSN' );
 
+ok    ( $webapp->frozen_controller, 'frozen_controller' );
 isa_ok( $webapp->config,     'Pangloss::Config',      'config' );
 isa_ok( $webapp->app,        'Pangloss::Application', 'app' );
-isa_ok( $webapp->controller, 'Pipeline',              'controller' );
 isa_ok( $webapp->ufactory,   'OpenFrame::WebApp::User::Factory',     'ufactory' );
 isa_ok( $webapp->tfactory,   'OpenFrame::WebApp::Template::Factory', 'ufactory' );
 isa_ok( $webapp->sfactory,   'OpenFrame::WebApp::Session::Factory',  'ufactory' );

@@ -89,7 +89,7 @@
 										<span petal:if="true: $view/term/status/is_approved">approved</span>
 										<span petal:if="true: $view/term/status/is_rejected">rejected</span>
 										<span petal:if="true: $view/term/status/is_pending">pending</span>
-										<a petal:if="true: can_proof" href="term-status.html?selected_term=$view/term/key&get_term=1">[edit]</a>
+										<a petal:if="true: can_proof" href="term-status.html?selected_term=${uri_escape: view/term/key}&get_term=1">[edit]</a>
 									</td>
 								</tr>
 								<tr>

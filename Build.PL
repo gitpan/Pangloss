@@ -12,8 +12,6 @@ Build.PL - Build script generator for Pangloss
 
 =cut
 
-use 5.008;
-
 use lib 'lib';
 use strict;
 use warnings;
@@ -49,6 +47,7 @@ my $build = $class->new
   (
    module_name        => 'Pangloss',
    dist_version_from  => catfile(qw( lib Pangloss Version.pm)),
+   create_readme      => 1,
 
    install_base       => $install_base,
    install_types      => [qw( lib arch script bindoc libdoc web conf )],
@@ -61,11 +60,12 @@ my $build = $class->new
    build_requires     => {
 			  'Test::More'    => '0.47',
 			  'Data::Random'  => '0.05',
-			  'Module::Build' => '0.19',
+			  'Module::Build' => '0.20',
 		      },
    requires           => {
 			  'perl'              => '5.8.0',
 			  'accessors'         => '0.02',
+			  'Storable'          => '2.0',
 			  'YAML'              => '0.35',
 			  'Date::Format'      => '2.0',
 			  'Pod::Usage'        => '1.0',
@@ -77,7 +77,7 @@ my $build = $class->new
 			  'Term::ReadKey'     => '2.0',
 			  'Error'             => '0.15',
 			  'Petal'             => '1.06',
-			  'Petal::Utils'      => '0.04',
+			  'Petal::Utils'      => '0.05',
 			  'Pixie'             => '2.06',
 			  'Pipeline'          => '3.04',
 			  'Pipeline::Config'  => '0.03',
@@ -85,8 +85,10 @@ my $build = $class->new
 			  'OpenFrame::WebApp' => '0.04',
 		      },
    recommends         => {
-			  'Apache'       => '1.0',
-			  'HTTP::Daemon' => '1.0',
+			  'Apache'            => '1.0',
+			  'Apache::Cookie'    => '0.1',
+			  'HTTP::Daemon'      => '1.0',
+			  'HTTP::Headers'     => '1.47',
 			  'OpenFrame::Segment::Apache' => '1.05',
 		      },
   );
@@ -108,6 +110,13 @@ __DATA__
 
 use strict;
 use File::Spec::Functions;
+
+sub do_create_readme {
+  my $self = shift;
+  require Pod::Text;
+  my $parser = Pod::Text->new;
+  $parser->parse_from_file(catfile(qw( lib Pangloss.pm )), 'README', @_);
+}
 
 sub install_base_relative {
     my ($self, $type) = @_;

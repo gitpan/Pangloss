@@ -91,7 +91,7 @@
 							</tr>
 						</table>
 						<input petal:if="false: language_added" type="submit" name="add_language" value="add language"/>
-						<a petal:if="language_added" href="/edit/language.html?selected_language=$view/language/key&get_language=1">edit language</a>
+						<a petal:if="language_added" href="/edit/language.html?selected_language=${uri_escape: view/language/key}&get_language=1">edit language</a>
 					</form>
 
 					<p petal:if="false: can_add">

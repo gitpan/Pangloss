@@ -58,7 +58,7 @@
 							</table>
 							<table width="50%" petal:if="true: can_edit; false: view/category/removed;">
 								<tr>
-									<td align="left"><a href="add_concept.html?selected_category=$view/category/key&get_category=1&list_categories=1" petal:if="session/user/can_add_concepts">add concept</a></td>
+									<td align="left"><a href="add_concept.html?selected_category=${uri_escape: view/category/key}&get_category=1&list_categories=1" petal:if="session/user/can_add_concepts">add concept</a></td>
 									<td align="center"><input type="submit" name="modify_category" value="modify category"/></td>
 								</tr>
 							</table>

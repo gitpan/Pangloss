@@ -4,28 +4,22 @@ use strict;
 use warnings::register;
 
 use Error qw( :try );
-
 use Pixie;
-
+use Storable qw( freeze thaw );
 use Pangloss;
-
 use Pipeline;
 use Pipeline::Config;
-
 use OpenFrame;
 use OpenFrame::WebApp;
-
-# TODO: don't load Petal if we're not using Petal templates
-use Petal;
+use Petal; # TODO: don't load Petal if we're not using Petal templates
 use Petal::Utils qw( :default :debug );
-
 use File::Spec::Functions qw( catdir catfile );
 
 use base      qw( Pangloss::Object );
-use accessors qw( config app controller ufactory tfactory sfactory );
+use accessors qw( config app controller frozen_controller ufactory tfactory sfactory );
 
 our $VERSION  = ((require Pangloss::Version), $Pangloss::VERSION)[1];
-our $REVISION = (split(/ /, ' $Revision: 1.6 $ '))[2];
+our $REVISION = (split(/ /, ' $Revision: 1.7 $ '))[2];
 
 #------------------------------------------------------------------------------
 # Object initialization
@@ -54,18 +48,21 @@ sub init_controller {
     $Petal::ERROR_ON_UNDEF_VAR = 0
       if $self->config->{PG_TEMPLATE_TYPE} =~ /petal/;
 
+    my $controller;
     try {
-	$self->controller( Pipeline::Config->new
-			     ->debug( $self->config->{PG_DEBUG} > 2 )
-			     ->load( $self->config->{PG_CONFIG_FILE} ) );
+	$controller = Pipeline::Config->new
+			->debug( $self->config->{PG_DEBUG} > 2 )
+			->load( $self->config->{PG_CONFIG_FILE} );
     } catch Error with {
 	my $e = shift;
 	die( "error loading pipeline config from "
 	     . $self->config->{PG_CONFIG_FILE} . ": $e" );
     };
 
-    $self->controller->debug_all( $self->config->{PG_DEBUG} - 1 )
-      if $self->config->{PG_DEBUG};
+    $controller->debug_all( $self->config->{PG_DEBUG} - 1 )
+      if $self->config->{PG_DEBUG} > 1;
+
+    $self->frozen_controller( freeze( $controller ) );
 
     return $self;
 }
@@ -144,12 +141,21 @@ sub handle_request ($$) {
 
     $self->emit( "\n($$) serving request for " . $request->uri . "\n" );
 
-    $self->controller->store( $self->create_store->set( $request ) );
+    # return the pipeline production
+    return $self->create_controller( $request )->dispatch();
+}
+
+sub create_controller {
+    my $self    = shift;
+    my $request = shift;
+
+    $self->controller( thaw( $self->frozen_controller ) )
+         ->controller->store( $self->create_store->set( $request ) );
+
     # TODO: patch Pipeline::Config so we can specify this in the controller cfg:
     $self->controller->cleanups->segments( $self->create_cleanups );
 
-    # return the pipeline production
-    return $self->controller->dispatch();
+    return $self->controller;
 }
 
 sub create_store {

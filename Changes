@@ -2,7 +2,16 @@
  Pangloss Change Log
 =====================
 
-All changes by Steve Purkis <spurkis@quiup.com> unless otherwise stated.
+All changes by Steve Purkis <spurkis@cpan.org> unless otherwise stated.
+
+v0.06
+    +	updated to work with Pipeline 3.09, fixes bug:
+	http://email-lists.org/pipermail/pangloss/2004-May/000155.html
+    +	now encodes uri strings as necessary, fixes bug:
+	http://email-lists.org/pipermail/pangloss/2004-March/000153.html
+    +	moved 'use 5.008;' from Build.PL to Pangloss.pm [reported by
+	anonymous, RT #4045]
+    +	minor fixes to YAML IO layer
 
 v0.05
     +	fixed multiple-selected items bug (both uri encoded & post) on users,

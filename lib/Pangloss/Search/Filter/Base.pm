@@ -19,7 +19,7 @@ use base      qw( Pangloss::Search::Filter );
 use accessors qw( item_keys );
 
 our $VERSION  = ((require Pangloss::Version), $Pangloss::VERSION)[1];
-our $REVISION = (split(/ /, ' $Revision: 1.6 $ '))[2];
+our $REVISION = (split(/ /, ' $Revision: 1.7 $ '))[2];
 
 sub init {
     shift->reset();
@@ -70,11 +70,11 @@ sub del { shift->unset( @_ ); }
 sub exists { shift->is_set( @_ ); }
 
 sub keys {
-    return keys( %{ shift->item_keys } );
+    return CORE::keys( %{ shift->item_keys } );
 }
 
 sub size {
-    return scalar keys( %{ shift->item_keys } );
+    return scalar CORE::keys( %{ shift->item_keys } );
 }
 
 sub is_empty {

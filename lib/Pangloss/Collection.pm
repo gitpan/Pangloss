@@ -24,7 +24,7 @@ use base      qw( Pangloss::Object );
 use accessors qw( collection );
 
 our $VERSION  = ((require Pangloss::Version), $Pangloss::VERSION)[1];
-our $REVISION = (split(/ /, ' $Revision: 1.13 $ '))[2];
+our $REVISION = (split(/ /, ' $Revision: 1.14 $ '))[2];
 
 sub init {
     my $self = shift;
@@ -33,7 +33,7 @@ sub init {
 
 sub keys {
     my $self = shift;
-    my @keys = keys %{ $self->collection };
+    my @keys = CORE::keys %{ $self->collection };
     return wantarray ? (@keys) : [@keys];
 }
 
@@ -62,7 +62,7 @@ sub iterator {
 
 sub size {
     my $self = shift;
-    return scalar keys( %{ $self->collection } );
+    return scalar CORE::keys( %{ $self->collection } );
 }
 
 sub is_empty {

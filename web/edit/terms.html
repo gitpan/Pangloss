@@ -24,7 +24,7 @@
 					<table style="border: solid 1px">
 						<tr><th>Term</th><th>Concept</th><th>Language</th><th>Status</th><th>Creator</th><th>Notes</th><th>Date</th></tr>
 						<tr petal:repeat="term view/terms_collection/sorted_list">
-							<td lang="$term/language/iso_code" dir="$term/language/direction"><a href="/edit/term.html?selected_term=$term/key&get_term=1&list_concepts=1">$term/name</a></td>
+							<td lang="$term/language/iso_code" dir="$term/language/direction"><a href="/edit/term.html?selected_term=${uri_escape: term/key}&get_term=1&list_concepts=1">$term/name</a></td>
 							<td>$term/concept</td>
 							<td>$term/language</td>
 							<td>

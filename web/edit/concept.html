@@ -68,7 +68,7 @@
 							</table>
 							<table width="50%" petal:if="false: view/concept/removed">
 								<tr>
-									<td align="left"><a href="add_term.html?selected_concept=$view/concept/key&get_concept=1&list_languages=1&list_concepts=1" petal:if="session/user/is_translator">add translation</a></td>
+									<td align="left"><a href="add_term.html?selected_concept=${uri_escape: view/concept/key}&get_concept=1&list_languages=1&list_concepts=1" petal:if="session/user/is_translator">add translation</a></td>
 									<td align="right"><input petal:if="can_edit;" type="submit" name="modify_concept" value="modify concept"/></td>
 								</tr>
 							</table>

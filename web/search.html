@@ -342,13 +342,13 @@
 													<td width="33%" height="15" valign="middle" align="center">
 														<span class="medium">
 															<a petal:if="true: results/prev_page"
-																 href="$pager_uri&page=$results/prev_page" class="medium" alt="previous">&lt;&lt;</a>
+																 href="$pager_uri&page=${uri_escape: results/prev_page}" class="medium" alt="previous">&lt;&lt;</a>
 															|<?repeat name="page results/pages_list"?>
-															<?if name="equal: $page $results/page"?><span class="medium_strong">$page</span><?else?><a href="$pager_uri&page=$page" class="medium">$page</a><?end?>
+															<?if name="equal: $page $results/page"?><span class="medium_strong">$page</span><?else?><a href="$pager_uri&page=${uri_escape: page}" class="medium">$page</a><?end?>
 															<span class="medium" petal:if="false: repeat/end"> - </span>
 															<?end?>|
 															<a petal:if="true: results/next_page"
-																 href="$pager_uri&page=$results/next_page" class="medium" alt="next">&gt;&gt;</a>
+																 href="$pager_uri&page=${uri_escape: results/next_page}" class="medium" alt="next">&gt;&gt;</a>
 														</span>
 													</td>
 													<td width="33%"	height="15" valign="middle" align="right">
@@ -376,17 +376,17 @@
 												<tr>
 													<td valign="bottom" align="left" width="40%">
 														<span class="search-result-concept">
-															<a class="search_title" href="/edit/concept.html?selected_concept=$concept/key&get_concept=1" id="bold">$concept/name</a>
+															<a class="search_title" href="/edit/concept.html?selected_concept=${uri_escape: concept/key}&get_concept=1" id="bold">$concept/name</a>
 														</span>
 													</td>
 													<td valign="bottom" align="right" width="30%">
-														<a class="medium" href="/edit/category.html?selected_category=$concept/category&get_category=1"
+														<a class="medium" href="/edit/category.html?selected_category=${uri_escape: concept/category}&get_category=1"
 															 petal:if="concept/category">$concept/category</a>
 														<span class="medium" petal:if="false: concept/category"><i>no category</i></span>
 													</td>
 													<td width="5"	align="right"> </td>
 													<td valign="bottom" align="right" width="10">
-														<a class="medium" href="/edit/add_term.html?selected_concept=$concept/key&get_concept=1&list_concepts=1&list_languages=1" alt="add translation"
+														<a class="medium" href="/edit/add_term.html?selected_concept=${uri_escape: concept/key}&get_concept=1&list_concepts=1&list_languages=1" alt="add translation"
 															 petal:if="session/user/is_translator" id="bold">+</a>
 													</td>
 													<td width="2"	align="right"> </td>
@@ -416,11 +416,11 @@
 													</td>
 													<td width="8"><span class="vsmall"> </span></td>
 													<td width="45%" valign="middle">
-														<a href="/edit/term.html?selected_term=$term/key&get_term=1&list_languages=1&list_concepts=1" class="medium">$term/name</a>
+														<a href="/edit/term.html?selected_term=${uri_escape: term/key}&get_term=1&list_languages=1&list_concepts=1" class="medium">$term/name</a>
 													</td>
 													<td width="8"><span class="vsmall"> </span></td>
 													<td width="10%" valign="middle">
-														<a href="/edit/user.html?selected_user=$term/creator&get_user=1" class="medium">$term/creator</a>
+														<a href="/edit/user.html?selected_user=${uri_escape: term/creator}&get_user=1" class="medium">$term/creator</a>
 													</td>
 													<td width="8"><span class="vsmall"> </span></td>
 													<td width="35%" valign="middle">
@@ -455,13 +455,13 @@
 													<td width="33%" height="15" valign="middle" align="center">
 														<span class="medium">
 															<a petal:if="true: results/prev_page"
-																 href="$pager_uri&page=$results/prev_page" class="medium" alt="previous">&lt;&lt;</a>
+																 href="$pager_uri&page=${uri_escape: results/prev_page}" class="medium" alt="previous">&lt;&lt;</a>
 															|<?repeat name="page results/pages_list"?>
-															<?if name="equal: $page $results/page"?><span class="medium_strong">$page</span><?else?><a href="$pager_uri&page=$page" class="medium">$page</a><?end?>
+															<?if name="equal: $page $results/page"?><span class="medium_strong">$page</span><?else?><a href="$pager_uri&page=${uri_escape: page}" class="medium">$page</a><?end?>
 															<span class="medium" petal:if="false: repeat/end"> - </span>
 															<?end?>|
 															<a petal:if="true: results/next_page"
-																 href="$pager_uri&page=$results/next_page" class="medium" alt="next">&gt;&gt;</a>
+																 href="$pager_uri&page=${uri_escape: results/next_page}" class="medium" alt="next">&gt;&gt;</a>
 														</span>
 													</td>
 													<td width="33%"	height="15" valign="middle" align="right">

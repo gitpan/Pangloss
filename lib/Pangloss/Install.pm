@@ -46,7 +46,7 @@ documentation for stores types available and for more details on Pixie).  If
 you are setting up a DBI store, you can do it with the Pangloss admin tool,
 for example:
 
-	pangloss> create store 'dbi:mysql:dbname=test'
+	pangloss> create store, 'dbi:mysql:dbname=test'
 	pangloss> connect 'dbi:mysql:dbname=test'
 
 Next, you need an admin user:
