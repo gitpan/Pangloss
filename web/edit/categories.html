@@ -23,8 +23,7 @@
 
 					<table style="border: solid 1px">
 						<tr><th>Category</th><th>Notes</th><th>Date</th></tr>
-						<tr petal:if="view/categories"
-								petal:repeat="category view/categories">
+						<tr petal:repeat="category view/categories_collection/sorted_list">
 							<td><a href="/edit/category.html?selected_category=$category/key&get_category=1">$category/name</td>
 							<td>$category/notes</td>
 							<td><span class="small" petal:content="date: $category/date">date</span></td>

@@ -10,7 +10,7 @@ use base      qw( OpenFrame::WebApp::Segment::Session Pangloss::Object );
 use accessors qw( srequest args );
 
 our $VERSION  = ((require Pangloss::Version), $Pangloss::VERSION)[1];
-our $REVISION = (split(/ /, ' $Revision: 1.7 $ '))[2];
+our $REVISION = (split(/ /, ' $Revision: 1.8 $ '))[2];
 our %STATUS_CODES = Pangloss::Term::Status->status_codes;
 
 sub dispatch {
@@ -110,23 +110,11 @@ sub update_keyword {
 
 sub update_document {
     my $self = shift;
-
-    if (my $uri = $self->args->{uri}) {
-	$uri =~ s|\A(?!http)|http://|;
-	# this code really doesn't belong in the controller...
-	$self->emit( "downloading $uri..." );
-	use URI;
-	use LWP::Simple qw( get );
-	use Pangloss::HTML::Stripper;
-	$self->srequest->{document_uri} = $uri;
-	$uri = URI->new( $uri );
-
-	my $html = get( $uri ); # assume it's HTML
-	my $text = Pangloss::HTML::Stripper->new->strip( $html );
-
-	$self->srequest->document( $text );
+    if ($self->args->{uri}) {
+	$self->srequest->load_document_from( $self->args->{uri} );
+    } else {
+	$self->srequest->document_uri( undef );
     }
-
     return $self;
 }
 

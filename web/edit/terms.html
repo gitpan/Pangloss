@@ -23,8 +23,7 @@
 
 					<table style="border: solid 1px">
 						<tr><th>Term</th><th>Concept</th><th>Language</th><th>Status</th><th>Creator</th><th>Notes</th><th>Date</th></tr>
-						<tr petal:if="view/terms"
-								petal:repeat="term view/terms">
+						<tr petal:repeat="term view/terms_collection/sorted_list">
 							<td lang="$term/language/iso_code" dir="$term/language/direction"><a href="/edit/term.html?selected_term=$term/key&get_term=1&list_concepts=1">$term/name</td>
 							<td>$term/concept</td>
 							<td>$term/language</td>
@@ -32,6 +31,7 @@
 								<span petal:if="true: $term/status/is_approved">approved</span>
 								<span petal:if="true: $term/status/is_rejected">rejected</span>
 								<span petal:if="true: $term/status/is_pending">pending</span>
+								<span petal:if="true: $term/status/is_deprecated">deprecated</span>
 							</td>
 							<td>$term/creator</td>
 							<td>$term/notes</td>

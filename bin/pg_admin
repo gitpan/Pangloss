@@ -42,7 +42,7 @@ __END__
 
 =head1 NAME
 
-admin.pl - Pangloss admin shell
+pg_admin - Pangloss admin shell
 
 =head1 SYNOPSIS
 

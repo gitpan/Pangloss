@@ -13,7 +13,7 @@ package Pangloss::Version;
 use strict;
 use warnings::register;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 $Pangloss::VERSION = $VERSION;
 

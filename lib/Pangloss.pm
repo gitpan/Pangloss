@@ -21,8 +21,10 @@ use Pixie;
 use Pangloss::Config;
 use Pangloss::Application;
 
-our $VERSION  = ((require Pangloss::Version), $Pangloss::VERSION)[1];
-our $REVISION = (split(/ /, ' $Revision: 1.8 $ '))[2];
+# hard-code version temporarily while we try & resolve a CPAN indexing problem
+#our $VERSION  = ((require Pangloss::Version), $Pangloss::VERSION)[1];
+our $VERSION  = '0.04';
+our $REVISION = (split(/ /, ' $Revision: 1.10 $ '))[2];
 
 1;
 
@@ -111,7 +113,8 @@ Pangloss has an off-line administration tool, L<pg_admin>.
 
 =head1 INSTALLATION
 
-For detailed installation instructions, see L<Pangloss::Installation>.
+For detailed installation instructions, see L<Pangloss::Install> or the INSTALL
+file.
 
 =head1 AUTHOR
 

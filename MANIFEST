@@ -12,12 +12,7 @@ bin/pg_test_server		Standalone test server
 conf/config.yaml		Pipeline config file (test server)
 conf/controller.yml		Controller Pipeline config file
 conf/sample-httpd.conf
-docs/Functional-Specification.txt
-docs/Pangloss-Architecture.png
-docs/Pangloss-Classes.png
-docs/Technical-Specification.html
 docs/design-notes.txt
-docs/pangloss.css
 docs/working-notes.txt
 lib/Pangloss.pm
 lib/Pangloss/Apache/Handler.pm
@@ -43,7 +38,7 @@ lib/Pangloss/Config.pm
 lib/Pangloss/Error.pm
 lib/Pangloss/HTML/Stripper.pm
 lib/Pangloss/IO/YAML.pm
-lib/Pangloss/Installation.pod
+lib/Pangloss/Install.pm
 lib/Pangloss/Language.pm
 lib/Pangloss/Language/Error.pm
 lib/Pangloss/Languages.pm
@@ -174,7 +169,6 @@ lib/Pangloss/Users.pm
 lib/Pangloss/Version.pm
 lib/Pangloss/WebApp.pm
 lib/Pangloss/WebApp/Standalone.pm
-lib/Pangloss/accessors.pm
 t/001..object.t
 t/002..errors.t
 t/003..collection-item.t

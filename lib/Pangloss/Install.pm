@@ -1,8 +1,15 @@
+package Pangloss::Install;
+
+# exists only for the namespace so the front page doesn't get clobbered on
+# search.cpan.org...
+
+1;
+
 =pod
 
 =head1 NAME
 
-Pangloss installation
+Pangloss::Install - how to install Pangloss
 
 =head1 SYNOPSIS
 

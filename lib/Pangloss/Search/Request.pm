@@ -11,6 +11,7 @@ Pangloss::Search::Request - wrapper around a set of search filters
   $srequest->language( 'foo', $boolean )
            ->toggle_category( $category->key )
            ->keywords( 'foo bar baz' )
+           ->document_uri( $uri )
            ->document( $text );
 
   my $search = new Pangloss::Search;
@@ -21,7 +22,11 @@ Pangloss::Search::Request - wrapper around a set of search filters
 
 package Pangloss::Search::Request;
 
+use URI;
+use LWP::Simple qw( get );
 use Scalar::Util qw( blessed );
+
+use Pangloss::HTML::Stripper;
 
 use Pangloss::Search::Filter::Keyword;
 use Pangloss::Search::Filter::Document;
@@ -34,10 +39,10 @@ use Pangloss::Search::Filter::Status;
 use Pangloss::Search::Filter::DateRange;
 
 use base      qw( Pangloss::Object );
-use accessors qw( filters modified );
+use accessors qw( filters modified document_uri );
 
 our $VERSION  = ((require Pangloss::Version), $Pangloss::VERSION)[1];
-our $REVISION = (split(/ /, ' $Revision: 1.11 $ '))[2];
+our $REVISION = (split(/ /, ' $Revision: 1.12 $ '))[2];
 
 sub init {
     my $self = shift;
@@ -217,6 +222,53 @@ sub get_filters {
     $self->modified(0);
 
     return wantarray ? @filters : \@filters;
+}
+
+
+#------------------------------------------------------------------------------
+# Document/URI
+
+sub load_document_from {
+    my $self = shift;
+    my $uri  = shift;
+
+    $uri = $self->create_uri_from( $uri )
+      unless (blessed $uri and $uri->isa( 'URI' ));
+
+    unless ($self->is_document_loaded_from( $uri )) {
+	$self->document_uri( $uri )
+	     ->download_document_uri;
+    }
+
+    return $self;
+}
+
+sub download_document_uri {
+    my $self = shift;
+    my $uri  = $self->document_uri;
+
+    $self->emit( "downloading $uri..." );
+    $uri = URI->new( $uri );
+
+    my $html = LWP::Simple::get( $uri ); # assume it's HTML
+    my $text = Pangloss::HTML::Stripper->new->strip( $html );
+
+    $self->document( $text );
+
+    return $self;
+}
+
+sub create_uri_from {
+    my $self = shift;
+    my $uri  = shift;
+    $uri =~ s|\A(?!http)|http://|;
+    $uri;
+}
+
+sub is_document_loaded_from {
+    my $self = shift;
+    my $uri  = shift;
+    return $self->document_uri eq $uri and $self->document;
 }
 
 

@@ -32,6 +32,8 @@ is( $sreq->keyword, 'foo bar',          'keyword(get)' );
 ok( $sreq->modified, 'is modified' );
 $sreq->modified(0);
 
+is( $sreq->document_uri( 'foo' ), $sreq,     'document_uri(set)' );
+is( $sreq->document_uri, 'foo',              'document_uri(get)' );
 is( $sreq->document( 'foo bar baz' ), $sreq, 'document(set)' );
 is( $sreq->document, 'foo bar baz',          'document(get)' );
 
@@ -41,6 +43,15 @@ my $filters = $sreq->get_filters;
 isa_ok( $filters, 'ARRAY', 'get_filters' );
 
 ok(!$sreq->modified, 'not modified' );
+
+my $uri = $sreq->create_uri_from( 'www.quiup.com' );
+is( $uri, 'http://www.quiup.com', 'create_uri_from' );
+
+ok(!$sreq->is_document_loaded_from( $uri ), 'is_document_loaded_from false' );
+$sreq->document_uri( 'http://www.quiup.com' )
+     ->document( 'welcome to quiup' );
+ok( $sreq->is_document_loaded_from( $uri ), 'is_document_loaded_from true' );
+
 
 sub test_toggle {
     my $sreq = shift;

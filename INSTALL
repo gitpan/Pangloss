@@ -1,5 +1,5 @@
 NAME
-    Pangloss installation
+    Pangloss::Install - how to install Pangloss
 
 SYNOPSIS
       % perl Build.PL

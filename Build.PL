@@ -71,6 +71,8 @@ my $build = $class->new
 			  'Pod::Usage'        => '1.0',
 			  'MIME::Types'       => '1.06',
 			  'HTML::Parser'      => '3.00',
+			  'LWP::Simple'       => '1.0',
+			  'URI'               => '1.0',
 			  'Cache::Cache'      => '1.0',
 			  'Term::ReadKey'     => '2.0',
 			  'Error'             => '0.15',
@@ -140,7 +142,7 @@ sub ACTION_install {
 	  "\tMANPATH  = $man_dir\t[optional]\n" : (),
 	  "\tPATH     = $bin_dir\t[optional]\n",
 	  "\n",
-	  "Consult the Pangloss::Installation and Pangloss::Config pages for\n",
+	  "See the Pangloss::Install and Pangloss::Config pages for\n",
 	  "more details on how to get your server up and running\n\n",
 	 );
 

@@ -62,7 +62,8 @@ SYSTEM OVERVIEW
     Pangloss has an off-line administration tool, pg_admin.
 
 INSTALLATION
-    For detailed installation instructions, see Pangloss::Installation.
+    For detailed installation instructions, see Pangloss::Install or the
+    INSTALL file.
 
 AUTHOR
     Steve Purkis <spurkis@quiup.com>

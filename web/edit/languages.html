@@ -25,8 +25,7 @@
 
 					<table style="border: solid 1px">
 						<tr><th>ISO code</th><th>Language Name</th><th>Direction</th></tr>
-						<tr petal:if="view/languages"
-								petal:repeat="language view/languages">
+						<tr petal:repeat="language view/languages_collection/sorted_list">
 							<td><a href="/edit/language.html?selected_language=$language/key&get_language=1">$language/iso_code</td>
 							<td>$language/name</td>
 							<td><div align="center">$language/direction<div></td>

@@ -4,6 +4,17 @@
 
 All changes by Steve Purkis <spurkis@quiup.com> unless otherwise stated.
 
+v0.04
+    +	more pod updates
+    +	moved Pangloss/Installation.pod --> Pangloss/Install.pm because it
+	replaced the Pangloss front-page on search.span.org!
+    -	removed Pangloss::accessors
+    +	collection list pages (ie: edit/concepts.html) now use sorted lists
+	[suggested by Dan McQuillan]
+    +	fixed bug: reappearing URL in the search box [reported by Dan McQuillan]
+    +	hard-coded $Pangloss::VERSION while we try & resolve a CPAN indexing
+	problem
+
 v0.03
     +	simplified Html headers [suggested by Dan McQuillan]
     +	more pod updates
